@@ -17,6 +17,7 @@ musarskoy_id = 1473899765
 admin_id = 768483882
 responses_file = '/app/data/musarskoy/responses.json'
 photo_folder = '/app/data/musarskoy/photo'
+sluts_id_list = [6770054783, 5764769759, 7060065825] # список акков ксюни
 
 # Загрузка JSON-файла с ответами
 with open(responses_file, "r") as file:
@@ -79,8 +80,11 @@ async def echo(client, message):
         update_and_reload_responses(message.text)
         #await message.reply("Ваше сообщение добавлено в список ответов.")
     else:
-        # Генерация случайного числа от 1 до 100
-        random_number = randint(1, 100)
+        random_number = 0
+        if message.from_user.id in sluts_id_list:
+            random_number = randint(1, 2)
+        else:
+            random_number = randint(1, 100)
 
         # Проверка случайного числа для отправки фото
         if random_number == 2:
